@@ -18,33 +18,35 @@ document.addEventListener("keydown", myFunction);
     
 function myFunction()
 {
-    keyValue     = event.keyCode;
-    if(keyValue == '37')
+    if(posX <= 500 && posX >=0)
     {
-        console.log('kkk');
-        posX = posX - 100;
-        perso.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
-        console.log(posX);
+        keyValue     = event.keyCode;
+        if(keyValue == '37')
+        {
+            console.log('kkk');
+            posX = posX - 100;
+            perso.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
+            console.log(posX);
+        }
+        else if(keyValue == '38')
+        {
+            console.log('JJJ');
+            posY = posY - 100;
+            perso.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
+        }
+        else if(keyValue == '39')
+        {
+            console.log('ppp');
+            posX = posX + 100;
+            perso.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
+            console.log(posX);
+        }   
+        else if(keyValue == '40')
+        {
+            posY = posY + 100;
+            perso.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
+        }  
     }
-    else if(keyValue == '38')
-    {
-        console.log('JJJ');
-        posY = posY - 100;
-        perso.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
-    }
-    else if(keyValue == '39')
-    {
-        console.log('ppp');
-        posX = posX + 100;
-        perso.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
-        console.log(posX);
-    }   
-    else if(keyValue == '40')
-    {
-        posY = posY + 100;
-        perso.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
-    }  
-        
 //        if(keyValue = '37')
 //        {
 //            perso.style.transform = 'translateX(-100px)';

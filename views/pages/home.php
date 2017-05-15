@@ -1,5 +1,7 @@
 <div class="content">
-    <div class="perso">
+    <div class="plateau">
+        <div class="perso">
         
+        </div>   
     </div>
 </div>
