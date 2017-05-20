@@ -10,8 +10,8 @@
     
 </head>
 <body>
-    <header>
-        <div class="header">
-            <img class="logo" src="assets/img/logo.png" alt="Bomberman">
-        </div>
-    </header>
+    <div>
+        <br>
+        <br>
+        <br>
+    </div>

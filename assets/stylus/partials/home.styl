@@ -1,24 +1,36 @@
 body
     background-color $blue
+    background-image url('/bomberman/assets/img/background.jpg')
+    background-position left center
+    background-repeat no-repeat
     
 .content
     background-color #3d96c6
     height 100%
     
-.perso
+.player
     position absolute
     top 0
     left 0
     width 100px
     height 100px
-    background-color yellow
+    background-color none
+    z-index 10
     transform translateX(0) translateY(0)
     transition all 0.1s ease-in
     
-.plateau
+.game-set
     display block
     position relative
-    width 600px
-    height 600px
+    width 0px
+    height 0px
     margin 0 auto
-    background red
+    background #9BAAC3
+    
+.wall
+    position absolute
+    top 0
+    left 0
+    background-color #5F7292
+    transform translateX(0) translateY(0)
+    
