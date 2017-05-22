@@ -37,7 +37,9 @@ gulp.task( 'js', function()
 {
     return gulp.src( [                          // Get JS files (in order)
             './assets/js/fastclick.js',
-            './assets/js/main.js'
+            './assets/js/wall.js',
+            './assets/js/player.js',
+            './assets/js/game-set.js'
         ] )
         .pipe( gulp_concat( 'main.min.js' ) ) // Concat in one file
         .pipe( gulp_uglify() )                  // Minify them

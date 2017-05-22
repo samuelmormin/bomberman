@@ -41,6 +41,20 @@ var Set = function(width)
         wall_sizing = this.wall_size;
     }
     
+    this.init = function()
+    {
+        this.display_set();
+        this.display_walls();
+        this.create_player();
+    }
+    
+    
+    this.create_player = function(){
+        var player_1 = new Player(this.wall_size, this.wall_size, this.wall_size, this);
+        player_1.generate_player();
+        player_1.player_moves();
+    }
+    
     // This method will display the walls
     this.display_walls = function()
     {
@@ -51,17 +65,19 @@ var Set = function(width)
         for(var i = 0; i < this.columns ; i++)
         {
             calcY = i * this.wall_size;
-            console.log('i='+i);
+            //console.log('i='+i);
             for(var j=0 ; j < this.columns ; j++)
             {   
                 calcX = j * this.wall_size;
-                console.log('j='+j+'translate='+calcX);
+                //console.log('j='+j+'translate='+calcX);
                 
                 // Generates the border of the game set
                 if(j === 0 || i === 0 || i === this.columns-1 || j === this.columns-1)
                 {
                     var generate_wall = new Wall(calcX, calcY, this.wall_size);
+                    this.walls_positions.push(generate_wall);
                     generate_wall.display_wall();
+                    console.log(this.walls_positions);
                 }
                 
                 // Generates the walls in the middle of the game set
@@ -73,15 +89,36 @@ var Set = function(width)
             }
         }
     }
+    
 }
 
 
-var Player = function(posX, posY, wall_size)
+
+var Player = function(posX, posY, wall_size, game)
 {
-    this.posX      = posX;
-    this.posY      = posY;
-    this.wall_size = wall_size;
-    this.avatar    = "assets/img/avatar.svg";
+    this.posX            = posX;
+    this.posY            = posY;
+    this.wall_size       = wall_size;
+    this.avatar          = "assets/img/avatar.svg";
+    this.walls_positions = game.walls_positions;
+    this.greenlight      = false;
+    
+    this.test_walls = function()
+    {
+        
+        console.log('position')
+        console.log(this.walls_positions[2].posX);
+        var test_right = this.posX+this.wall_size;
+        for(var i = 0 ; i < this.walls_positions.length ; i++)
+        {
+            console.log(posX);
+            if(test_right = this.walls_positions[i].posX)
+            {
+                console.log('no');
+            }
+            
+        }
+    }
     
     this.player_moves = function()
     {
@@ -89,12 +126,17 @@ var Player = function(posX, posY, wall_size)
         var posX    = this.posX;
         var posY    = this.posY;
         
+        //console.log(that);
+        
         console.log(get_player);
+        
         
         document.addEventListener("keydown", function()
         {
             keyValue     = event.keyCode;
-            console.log(keyValue);
+            //console.log(keyValue);
+            //var _that = this;
+           // player_1.test_walls();
             
             // If LEFT key is pressed
             if(keyValue == '37')
@@ -102,6 +144,7 @@ var Player = function(posX, posY, wall_size)
                 console.log('left');
                 posX = posX - wall_size;
                 console.log('after click posx='+posX);
+                
                 
                 if(posX >= wall_size)
                 {
@@ -119,16 +162,16 @@ var Player = function(posX, posY, wall_size)
             // If UP key is pressed
             else if(keyValue == '38')
             {
-                console.log('up');
+                //console.log('up');
                 posY = posY - wall_size;
-                console.log('after click posY='+posY);
+                //console.log('after click posY='+posY);
                 
                 if(posY >= wall_size)
                 {
-                    console.log('up');
+                    //console.log('up');
                     get_player.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
-                    console.log('posX='+posX);
-                    console.log('posY='+posY);
+                    //console.log('posX='+posX);
+                    //console.log('posY='+posY);
                 }
                 else if(posY < wall_size)
                 {
@@ -136,16 +179,16 @@ var Player = function(posX, posY, wall_size)
                     get_player.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
                     
                 }
-                console.log('posX='+posX);
-                console.log('posY='+posY);
+                //console.log('posX='+posX);
+                //console.log('posY='+posY);
             }
             
             // If RIGHT key is pressed
             else if(keyValue == '39')
             {
-                console.log('right');
+                //console.log('right');
                 posX = posX + wall_size;
-                console.log('after click posx='+posX);
+                //console.log('after click posx='+posX);
                 
                 if(posX <= wall_size * 13)
                 {
@@ -156,18 +199,18 @@ var Player = function(posX, posY, wall_size)
                     posX = wall_size*13;
                     get_player.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
                     
-                    console.log('x13='+posX);
+                    //console.log('x13='+posX);
                 }
-                console.log('posXx='+posX);
-                console.log('posYy='+posY);
+                //console.log('posXx='+posX);
+                //console.log('posYy='+posY);
             }
             
             // If DOWN key is pressed
             else if(keyValue == '40')
             {
-                console.log('down');
+                //console.log('down');
                 posY = posY + wall_size;
-                console.log('after click posY='+posY);
+                //console.log('after click posY='+posY);
                 
                 if(posY <= wall_size*13)
                 {
@@ -178,8 +221,8 @@ var Player = function(posX, posY, wall_size)
                     posY = wall_size*13;
                     get_player.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';  
                 }
-                console.log('posX='+posX);
-                console.log('posY='+posY);
+                //console.log('posX='+posX);
+                //console.log('posY='+posY);
             }                    
         });  
     }
@@ -194,12 +237,12 @@ var Player = function(posX, posY, wall_size)
         create_player.innerHTML = '<img class="avatar" src="'+ this.avatar +'" alt="Tupac">';
         document.querySelector(".game-set").appendChild(create_player);
     }
+   
 }
 
 
 var game_set = new Set(500);
-var player_1 = new Player(game_set.wall_size, game_set.wall_size, game_set.wall_size);
-game_set.display_set();
-game_set.display_walls();
-player_1.generate_player();
-player_1.player_moves();
+game_set.init();
+
+
+//player_1.test_walls(player_1.posX, player_1.posY, player_1.walls_positions);
