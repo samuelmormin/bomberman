@@ -26,7 +26,8 @@ var Set = function(width)
     }
     
     
-    this.create_player = function(){
+    this.create_player = function()
+    {
         var player_1 = new Player(this.wall_size, this.wall_size, this.wall_size, this);
         player_1.generate_player();
         player_1.player_moves();
@@ -54,7 +55,7 @@ var Set = function(width)
                     var generate_wall = new Wall(calcX, calcY, this.wall_size);
                     this.walls_positions.push(generate_wall);
                     generate_wall.display_wall();
-                    console.log(this.walls_positions);
+                    //console.log(this.walls_positions);
                 }
                 
                 // Generates the walls in the middle of the game set
@@ -66,7 +67,6 @@ var Set = function(width)
             }
         }
     }
-    
 }
 
 var game_set = new Set(500);

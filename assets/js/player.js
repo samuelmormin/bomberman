@@ -11,7 +11,7 @@ var Player = function(posX, posY, wall_size, game)
     {
         
         console.log('position')
-        console.log(this.walls_positions[2].posX);
+        console.log('pos 2 test walls ='+this.walls_positions[2].posX);
         var test_right = this.posX+this.wall_size;
         for(var i = 0 ; i < this.walls_positions.length ; i++)
         {
@@ -22,17 +22,20 @@ var Player = function(posX, posY, wall_size, game)
             }
             
         }
+        
+        console.log('it workswwwwwww');
     }
     
     this.player_moves = function()
     {
+        
         var get_player   = document.querySelector(".player");
+        //this.test_walls();
         var posX    = this.posX;
         var posY    = this.posY;
+        var _this = this;
         
-        //console.log(that);
-        
-        console.log(get_player);
+
         
         
         document.addEventListener("keydown", function()
@@ -40,19 +43,19 @@ var Player = function(posX, posY, wall_size, game)
             keyValue     = event.keyCode;
             //console.log(keyValue);
             //var _that = this;
-           // player_1.test_walls();
             
             // If LEFT key is pressed
             if(keyValue == '37')
             {
                 console.log('left');
+                 _this.test_walls();
                 posX = posX - wall_size;
-                console.log('after click posx='+posX);
-                
                 
                 if(posX >= wall_size)
                 {
                     get_player.style.transform = 'translateX('+ posX +'px) translateY('+ posY +'px)';
+                    this.posX = posX;
+                    console.log('context posX ='+this.posX);
                 }
                 else if(posX < wall_size)
                 {
@@ -141,5 +144,5 @@ var Player = function(posX, posY, wall_size, game)
         create_player.innerHTML = '<img class="avatar" src="'+ this.avatar +'" alt="Tupac">';
         document.querySelector(".game-set").appendChild(create_player);
     }
-   
+   //this.test_walls();
 }
